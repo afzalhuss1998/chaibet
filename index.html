@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chaibet - Where Trust Meets Thrill</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background: url('assets/background.jpg.png') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 40px;
+      animation: slideIn 1s ease-out;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      height: auto;
+    }
+
+    .typing-text {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #00ffc3;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 0px solid transparent;
+      width: 0;
+      animation: typing 3s steps(25, end) forwards;
+      text-shadow: 0 0 10px #00ffc3;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 20ch }
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      font-size: 1.3em;
+      color: #ffffff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #ffffff;
+    }
+
+    .cta-button {
+      background: linear-gradient(to right, #00c853, #64dd17);
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      animation: glow 2s infinite ease-in-out;
+      box-shadow: 0 0 10px #64dd17;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #64dd17; }
+      50% { box-shadow: 0 0 20px #00e676, 0 0 30px #00e676; }
+      100% { box-shadow: 0 0 10px #64dd17; }
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+    }
+
+    .footer {
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+      background: #111;
+      color: #666;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .whatsapp-float img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .video-wrapper {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 300px;
+      z-index: 998;
+    }
+
+    #leftVideo {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    .mute-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .typing-text {
+        font-size: 1.5em;
+      }
+
+      .logo {
+        width: 120px;
+        top: 10px;
+        right: 10px;
+      }
+
+      h2 {
+        font-size: 1em;
+      }
+
+      .cta-button {
+        font-size: 1em;
+        padding: 12px 24px;
+      }
+
+      .video-wrapper {
+        width: 150px;
+      }
+
+      .mute-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <img src="assets/chaibet-logo.png" alt="Chaibet Logo" class="logo" />
+    <div class="typing-text">Welcome to Chaibet</div>
+    <h2>Where Trust Meets Thrill.</h2>
+    <a href="https://chaibet.com/clk?affCampId=56783524&affId=LKztVLtwaK" target="_blank" class="cta-button">Join Us</a>
+  </section>
+
+  <div class="footer">
+    &copy; 2025 Chaibet. All rights reserved.
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/447754446772" class="whatsapp-float" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Chat" />
+  </a>
+
+  <!-- Left-side video with mute/unmute overlay -->
+  <div class="video-wrapper">
+    <video id="leftVideo" autoplay loop playsinline muted>
+      <source src="assets/your-video.mp4.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="muteBtn" class="mute-btn">🔇</button>
+  </div>
+
+  <script>
+    const video = document.getElementById('leftVideo');
+    const muteBtn = document.getElementById('muteBtn');
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      video.muted = true;
+    } else {
+      video.muted = false;
+      video.play().catch(() => {
+        video.muted = true;
+        video.play();
+      });
+    }
+
+    const updateMuteIcon = () => {
+      muteBtn.textContent = video.muted ? '🔇' : '🔊';
+    };
+
+    muteBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      updateMuteIcon();
+    });
+
+    updateMuteIcon();
+  </script>
+
+</body>
+</html>
+<!-- End of chaibet.html -->    
